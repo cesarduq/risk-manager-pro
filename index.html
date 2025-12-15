@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Manager Pro</title>
+    <!-- Iconos -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <!-- Fuente -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+
+    <!-- Botón Flotante Tema -->
+    <button class="theme-toggle" id="themeToggle" title="Cambiar Tema">
+        <i class="ri-sun-line" id="themeIcon"></i>
+    </button>
+
+    <main class="dashboard-container">
+        
+        <!-- HEADER -->
+        <header class="page-header">
+            <div class="header-content">
+                <div class="icon-box">
+                    <i class="ri-bar-chart-box-line"></i>
+                </div>
+                <div>
+                    <h1 class="gradient-text">Risk Manager</h1>
+                    <p>Calculadora de Gestión de Futuros</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- BENTO GRID -->
+        <div class="bento-grid">
+            
+            <!-- COLUMNA IZQUIERDA -->
+            <section class="left-panel">
+                
+                <!-- Tarjeta: Estrategia -->
+                <div class="card strategy-card">
+                    <h3><i class="ri-focus-3-line"></i> Modo de Operativa</h3>
+                    <div class="strategy-buttons">
+                        <button class="strat-btn" onclick="setStrategy(8, 4, this)">
+                            <div class="strat-content">
+                                <span class="strat-name">M15</span>
+                                <span class="strat-val">Scalping (8%)</span>
+                            </div>
+                        </button>
+                        <button class="strat-btn active" onclick="setStrategy(16, 2, this)">
+                            <div class="strat-content">
+                                <span class="strat-name">1H</span>
+                                <span class="strat-val">Intraday (16%)</span>
+                            </div>
+                        </button>
+                        <button class="strat-btn" onclick="setStrategy(32, 1, this)">
+                            <div class="strat-content">
+                                <span class="strat-name">4H</span>
+                                <span class="strat-val">Swing (32%)</span>
+                            </div>
+                        </button>
+                    </div>
+                    
+                    <div class="manual-input-group">
+                        <label>Ajuste Manual (%)</label>
+                        <input type="number" id="porcentaje" value="16">
+                    </div>
+                </div>
+
+                <!-- Tarjeta: Datos -->
+                <div class="card inputs-card">
+                    <h3><i class="ri-settings-4-line"></i> Parámetros</h3>
+                    
+                    <div class="input-row">
+                        <label>Capital Disponible</label>
+                        <div class="input-wrapper">
+                            <i class="ri-money-dollar-circle-line prefix-icon"></i>
+                            <input type="number" id="capital" value="600">
+                        </div>
+                    </div>
+
+                    <div class="input-row">
+                        <label>Stop Loss (%)</label>
+                        <div class="input-wrapper">
+                            <i class="ri-percent-line prefix-icon"></i>
+                            <input type="number" id="stoploss" value="1.595" step="0.01">
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- COLUMNA DERECHA -->
+            <section class="right-panel">
+                
+                <!-- Resultado Principal -->
+                <div class="card result-card gradient-ocean">
+                    <div class="result-header">
+                        <span>Margen Requerido</span>
+                        <i class="ri-secure-payment-line"></i>
+                    </div>
+                    <div class="result-value">
+                        $<span id="capitalMeter">0.00</span>
+                    </div>
+                    <div class="result-sub">Capital real a colocar en la orden</div>
+                </div>
+
+                <!-- Apalancamiento -->
+                <div class="card result-card gradient-sunset">
+                    <div class="result-header">
+                        <span>Apalancamiento</span>
+                        <i class="ri-rocket-line"></i>
+                    </div>
+                    <div class="result-value">
+                        <span id="apalancamiento">X1</span>
+                    </div>
+                    <div class="result-sub">Optimizado (7.5 / SL)</div>
+                </div>
+
+                <!-- Riesgo / Beneficio -->
+                <div class="card risk-reward-card">
+                    <div class="rr-item">
+                        <div class="rr-label">Riesgo (Pérdida)</div>
+                        <div class="rr-val loss">-$<span id="perdida">0.00</span></div>
+                    </div>
+                    <div class="vertical-divider"></div>
+                    <div class="rr-item">
+                        <div class="rr-label">Beneficio (1:2)</div>
+                        <div class="rr-val profit">+$<span id="ganancia">0.00</span></div>
+                    </div>
+                </div>
+
+                <!-- Vidas -->
+                <div class="card lives-card">
+                    <div class="lives-text">
+                        <span>Balas Diarias</span>
+                        <strong id="livesText">2 Intentos</strong>
+                    </div>
+                    <div class="lives-bar-container" id="livesContainer">
+                        <!-- JS inyecta las vidas aquí -->
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>© <span id="year"></span> <strong>Risk Manager Pro</strong>.</p>
+            <p class="subtitle">Herramienta de Gestión Desarrollada por <strong>Cesar Duque</strong></p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/scripts/script.js"></script>
+</body>
+</html>
